@@ -1,4 +1,5 @@
 import ServiceModel from "../models/serviceModel"
+
 module.exports.addService = async (req, res, next) => {
     try {
         const { serviceId, serviceName, serviceContent, serviceTime, servicePrice } = req.body;

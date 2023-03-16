@@ -4,7 +4,8 @@ import { connectDB } from './config/index.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import userRoutes from '../src/routes/v1/userRoute';
-import serviceRoutes from '../src/routes/v1/serviceroute';
+import serviceRoutes from './routes/v1/serviceRoute';
+import employeeRoutes from './routes/v1/employeeRoute';
 const app = express();
 
 const hostname = 'localhost'
@@ -15,7 +16,9 @@ const port = 8017
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", userRoutes)
-app.use("/api/add", serviceRoutes)
+app.use("/api/addService", serviceRoutes)
+app.use("/api/addEmployee", employeeRoutes)
+
 require("dotenv").config({});
 
 mongoose.set("strictQuery", false);
