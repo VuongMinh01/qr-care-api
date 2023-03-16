@@ -6,6 +6,7 @@ import cors from 'cors';
 import userRoutes from '../src/routes/v1/userRoute';
 import serviceRoutes from './routes/v1/serviceRoute';
 import employeeRoutes from './routes/v1/employeeRoute';
+import ServiceModel from './models/serviceModel'
 const app = express();
 
 const hostname = 'localhost'
@@ -45,6 +46,14 @@ app.get('/', (req, res) => {
     res.end('tesst')
 })
 
+app.get('/getAllService', async (req, res) => {
+    try {
+        const allService = await ServiceModel.find({});
+        res.send({ status: true, data: allService })
+    } catch (error) {
+        console.log('có lỗi trong việc lấy dữ liệu')
+    }
+})
 
 
 // app.listen(port, hostname, () => {
