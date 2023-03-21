@@ -25,8 +25,26 @@ module.exports.deleteService = async (req, res, next) => {
     try {
         const service = await ServiceModel.deleteOne(ServiceModel.serviceId)
         res.send({ data: true });
+        console.log("deleted");
     } catch (error) {
         next(error);
     }
+}
 
+module.exports.updateService = async (req, res, next) => {
+    try {
+        const { serviceName, serviceContent, serviceTime, servicePrice } = req.body;
+        const service = await ServiceModel.findOne({ serviceId });
+        const newService = await ServicelModel.findByIdAndUpdate(
+            { serviceId: service.serviceId },
+            { serviceName: serviceName },
+            { serviceContent: serviceContent },
+            { serviceTime: serviceTime },
+            { servicePrice: servicePrice },
+            { new: true }
+        );
+        return res.json({ status: true, data: newService });
+    } catch (error) {
+        next(error);
+    }
 }
