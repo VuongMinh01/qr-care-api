@@ -21,3 +21,12 @@ module.exports.addService = async (req, res, next) => {
         next(error);
     }
 }
+module.exports.deleteService = async (req, res, next) => {
+    try {
+        const service = await ServiceModel.deleteOne(ServiceModel.serviceId)
+        res.send({ data: true });
+    } catch (error) {
+        next(error);
+    }
+
+}

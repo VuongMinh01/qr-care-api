@@ -27,7 +27,7 @@ const employeeSchema = new mongoose.Schema({
     status: {
         type: String,
         requie: true,
-        default: "free",
+
     },
     address: {
         type: String,
