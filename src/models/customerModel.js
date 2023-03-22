@@ -1,14 +1,14 @@
-const mongoose = require("mongoose");
-const employeeSchema = new mongoose.Schema({
-    employeeId: {
+const mongoose = require('mongoose');
+const customerSchema = new mongoose.Schema({
+    customerId: {
         type: String,
         require: true,
         unique: true,
         min: 5,
     },
-    employeeName: {
+    customerName: {
         type: String,
-        requie: true,
+        require: true,
         min: 5,
     },
     phone: {
@@ -24,15 +24,15 @@ const employeeSchema = new mongoose.Schema({
         unique: true,
         max: 50,
     },
-    status: {
-        type: String,
-        requie: true,
-
-    },
     address: {
         type: String,
         requie: true,
         min: 10,
+    },
+    password: {
+        type: String,
+        require: true,
+        min: 6,
     }
 })
-module.exports = mongoose.model("Employees", employeeSchema)
+module.exports = mongoose.model("Customers", customerSchema)

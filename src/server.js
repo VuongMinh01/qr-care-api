@@ -6,8 +6,10 @@ import cors from 'cors';
 import userRoutes from '../src/routes/v1/userRoute';
 import serviceRoutes from './routes/v1/serviceRoute';
 import employeeRoutes from './routes/v1/employeeRoute';
-import ServiceModel from './models/serviceModel'
+import customerRoutes from './routes/v1/customerRoute';
+import ServiceModel from './models/serviceModel';
 import EmployeeModel from './models/employeeModel';
+import CustomerModel from './models/customerModel.js';
 const app = express();
 
 const hostname = 'localhost'
@@ -20,6 +22,8 @@ app.use(express.json());
 app.use("/api/auth", userRoutes)
 app.use("/api/service", serviceRoutes)
 app.use("/api/employee", employeeRoutes)
+app.use("/api/customer", customerRoutes)
+
 require("dotenv").config({});
 
 mongoose.set("strictQuery", false);
@@ -60,6 +64,14 @@ app.get('/getAllEmployee', async (req, res) => {
     try {
         const allEmployee = await EmployeeModel.find({});
         res.send({ status: true, data: allEmployee })
+    } catch (error) {
+        console.log('có lỗi trong việc lấy dữ liệu')
+    }
+})
+app.get('/getAllCustomer', async (req, res) => {
+    try {
+        const allCustomer = await CustomerModel.find({});
+        res.send({ status: true, data: allCustomer })
     } catch (error) {
         console.log('có lỗi trong việc lấy dữ liệu')
     }

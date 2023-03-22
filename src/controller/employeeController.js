@@ -6,6 +6,10 @@ module.exports.addEmployee = async (req, res, next) => {
         const employeeIdCheck = await EmployeeModel.findOne({ employeeId });
         if (employeeIdCheck)
             return res.json({ msg: "Employee Id already existed", status: false });
+        const phoneCheck = await EmployeeModel.findOne({ phone })
+        if (phoneCheck) {
+            return res.json({ msg: "Phone already existed", status: false });
+        }
         const employee = await EmployeeModel.create({
             employeeId,
             employeeName,
