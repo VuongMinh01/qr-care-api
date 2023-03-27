@@ -10,6 +10,8 @@ import customerRoutes from './routes/v1/customerRoute';
 import ServiceModel from './models/serviceModel';
 import EmployeeModel from './models/employeeModel';
 import CustomerModel from './models/customerModel.js';
+import CouponModel from './models/couponModel.js';
+import couponRoutes from './routes/v1/couponRoute';
 const app = express();
 
 const hostname = 'localhost'
@@ -23,6 +25,7 @@ app.use("/api/auth", userRoutes)
 app.use("/api/service", serviceRoutes)
 app.use("/api/employee", employeeRoutes)
 app.use("/api/customer", customerRoutes)
+app.use("/api/coupon", couponRoutes)
 
 require("dotenv").config({});
 
@@ -72,6 +75,14 @@ app.get('/getAllCustomer', async (req, res) => {
     try {
         const allCustomer = await CustomerModel.find({});
         res.send({ status: true, data: allCustomer })
+    } catch (error) {
+        console.log('có lỗi trong việc lấy dữ liệu')
+    }
+})
+app.get('/getAllCoupon', async (req, res) => {
+    try {
+        const allCoupon = await CouponModel.find({});
+        res.send({ status: true, data: allCoupon })
     } catch (error) {
         console.log('có lỗi trong việc lấy dữ liệu')
     }
