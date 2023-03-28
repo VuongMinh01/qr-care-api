@@ -30,3 +30,15 @@ module.exports.deleteCoupon = async (req, res, next) => {
         next(error);
     }
 }
+module.exports.updateCoupon = async (req, res, next) => {
+    console.log(req.params.couponId);
+    const { couponName, couponContent, startDate, endDate, types } = req.body;
+    const newCoupon = await CouponModel.findOneAndUpdate(req.params.couponId, {
+        couponName: couponName,
+        couponContent: couponContent,
+        startDate: startDate,
+        endDate: endDate,
+        types: types,
+    });
+    return res.json({ status: true, data: newCoupon });
+}

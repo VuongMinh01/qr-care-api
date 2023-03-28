@@ -3,15 +3,19 @@ import { mapOrder } from './utilities/sorts.js';
 import { connectDB } from './config/index.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
+
 import userRoutes from '../src/routes/v1/userRoute';
 import serviceRoutes from './routes/v1/serviceRoute';
 import employeeRoutes from './routes/v1/employeeRoute';
 import customerRoutes from './routes/v1/customerRoute';
+import couponRoutes from './routes/v1/couponRoute';
+import carRoutes from './routes/v1/carRoute';
+
 import ServiceModel from './models/serviceModel';
 import EmployeeModel from './models/employeeModel';
 import CustomerModel from './models/customerModel.js';
 import CouponModel from './models/couponModel.js';
-import couponRoutes from './routes/v1/couponRoute';
+import CarModel from './models/carModel.js';
 const app = express();
 
 const hostname = 'localhost'
@@ -26,6 +30,7 @@ app.use("/api/service", serviceRoutes)
 app.use("/api/employee", employeeRoutes)
 app.use("/api/customer", customerRoutes)
 app.use("/api/coupon", couponRoutes)
+app.use("/api/car", carRoutes)
 
 require("dotenv").config({});
 
@@ -88,6 +93,14 @@ app.get('/getAllCoupon', async (req, res) => {
     }
 })
 
+app.get('/getAllCar', async (req, res) => {
+    try {
+        const allCar = await CarModel.find({});
+        res.send({ status: true, data: allCar })
+    } catch (error) {
+        console.log('có lỗi trong việc lấy dữ liệu')
+    }
+})
 
 // app.listen(port, hostname, () => {
 //     console.log(`Server is running at ${hostname}:${port}`);
