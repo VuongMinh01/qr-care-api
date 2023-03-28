@@ -58,49 +58,7 @@ app.get('/', (req, res) => {
     res.end('tesst')
 })
 
-app.get('/getAllService', async (req, res) => {
-    try {
-        const allService = await ServiceModel.find({});
-        res.send({ status: true, data: allService })
-    } catch (error) {
-        console.log('có lỗi trong việc lấy dữ liệu')
-    }
-})
 
-
-app.get('/getAllEmployee', async (req, res) => {
-    try {
-        const allEmployee = await EmployeeModel.find({});
-        res.send({ status: true, data: allEmployee })
-    } catch (error) {
-        console.log('có lỗi trong việc lấy dữ liệu')
-    }
-})
-app.get('/getAllCustomer', async (req, res) => {
-    try {
-        const allCustomer = await CustomerModel.find({});
-        res.send({ status: true, data: allCustomer })
-    } catch (error) {
-        console.log('có lỗi trong việc lấy dữ liệu')
-    }
-})
-app.get('/getAllCoupon', async (req, res) => {
-    try {
-        const allCoupon = await CouponModel.find({});
-        res.send({ status: true, data: allCoupon })
-    } catch (error) {
-        console.log('có lỗi trong việc lấy dữ liệu')
-    }
-})
-
-app.get('/getAllCar', async (req, res) => {
-    try {
-        const allCar = await CarModel.find({});
-        res.send({ status: true, data: allCar })
-    } catch (error) {
-        console.log('có lỗi trong việc lấy dữ liệu')
-    }
-})
 
 // app.listen(port, hostname, () => {
 //     console.log(`Server is running at ${hostname}:${port}`);

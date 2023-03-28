@@ -42,3 +42,12 @@ module.exports.updateCoupon = async (req, res, next) => {
     });
     return res.json({ status: true, data: newCoupon });
 }
+
+module.exports.getAllCoupon = async (req, res) => {
+    try {
+        const allCoupon = await CouponModel.find({});
+        res.send({ status: true, data: allCoupon })
+    } catch (error) {
+        console.log('có lỗi trong việc lấy dữ liệu')
+    }
+}

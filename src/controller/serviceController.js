@@ -47,3 +47,11 @@ module.exports.updateService = async (req, res, next) => {
         next(err)
     }
 }
+module.exports.getAllService = async (req, res) => {
+    try {
+        const allService = await ServiceModel.find({});
+        res.send({ status: true, data: allService })
+    } catch (error) {
+        console.log('có lỗi trong việc lấy dữ liệu')
+    }
+}

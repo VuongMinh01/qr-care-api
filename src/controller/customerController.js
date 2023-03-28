@@ -25,3 +25,11 @@ module.exports.addCustomer = async (req, res, next) => {
         next(error)
     }
 }
+module.exports.getAllCustomer = async (req, res) => {
+    try {
+        const allCustomer = await CustomerModel.find();
+        res.send({ status: true, data: allCustomer })
+    } catch (error) {
+        console.log('có lỗi trong việc lấy dữ liệu')
+    }
+}

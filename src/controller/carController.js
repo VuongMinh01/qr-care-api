@@ -45,3 +45,12 @@ module.exports.updateCar = async (req, res, next) => {
         next(err)
     }
 }
+
+module.exports.getAllCar = async (req, res) => {
+    try {
+        const allCar = await CarModel.find();
+        res.send({ status: true, data: allCar })
+    } catch (error) {
+        console.log('có lỗi trong việc lấy dữ liệu')
+    }
+}
