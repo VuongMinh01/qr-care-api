@@ -31,3 +31,17 @@ module.exports.deleteCar = async (req, res, next) => {
         next(error)
     }
 }
+module.exports.updateCar = async (req, res, next) => {
+    try {
+        console.log(req.params.carId);
+        const { carName, carType, carCompany } = req.body;
+        const newCar = await CarModel.findOneAndUpdate(req.params.carId, {
+            carName: carName,
+            carCompany: carCompany,
+            carType: carType
+        });
+        return res.json({ status: true, data: newCar })
+    } catch (error) {
+        next(err)
+    }
+}

@@ -32,13 +32,18 @@ module.exports.deleteService = async (req, res, next) => {
 }
 
 module.exports.updateService = async (req, res, next) => {
-    console.log(req.params.serviceId);
-    const { serviceName, serviceContent, serviceTime, servicePrice } = req.body;
-    const newService = await ServiceModel.findOneAndUpdate(req.params.serviceId, {
-        serviceName: serviceName,
-        serviceContent: serviceContent,
-        serviceTime: serviceTime,
-        servicePrice: servicePrice
-    });
-    return res.json({ status: true, data: newService });
+    try {
+        console.log(req.params.serviceId);
+        const { serviceName, serviceContent, serviceTime, servicePrice } = req.body;
+        const newService = await ServiceModel.findOneAndUpdate(req.params.serviceId, {
+            serviceName: serviceName,
+            serviceContent: serviceContent,
+            serviceTime: serviceTime,
+            servicePrice: servicePrice
+        });
+        return res.json({ status: true, data: newService });
+
+    } catch (error) {
+        next(err)
+    }
 }
