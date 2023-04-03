@@ -1,31 +1,11 @@
-const mongoose = require('mongoose')
-const carSchema = new mongoose.Schema({
-    carId: {
+const { Double } = require("mongodb");
+const mongoose = require("mongoose");
+const orderSchema = new mongoose.Schema({
+    orderId: {
         type: String,
         require: true,
         unique: true,
         min: 5,
-    },
-    carName: {
-        type: String,
-        require: true,
-        unique: true,
-        min: 5,
-    },
-    carType: {
-        type: String,
-        require: true,
-        min: 5,
-    },
-    carCompany: {
-        type: String,
-        require: true,
-        min: 5,
-    },
-    carPlate: {
-        type: String,
-        require: true,
-        unique: true,
     },
     customerId: {
         type: String,
@@ -33,6 +13,24 @@ const carSchema = new mongoose.Schema({
         unique: true,
         min: 5,
     },
-
-})
-module.exports = mongoose.model("Cars", carSchema)
+    createdDate: {
+        type: String,
+        require: true,
+    },
+    totalMoney: {
+        type: Double,
+        require: true,
+    },
+    employeeId: {
+        type: String,
+        require: true,
+        unique: true,
+        min: 5,
+    },
+    slotCarId: {
+        type: String,
+        requie: true,
+        min: 5,
+    }
+});
+module.exports = mongoose.model("Orders", orderSchema)

@@ -3,7 +3,7 @@ const serviceSchema = new mongoose.Schema({
     serviceId: {
         type: String,
         require: true,
-        min: 3,
+        min: 5,
         unique: true,
     },
     serviceName: {

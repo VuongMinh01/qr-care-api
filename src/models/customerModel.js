@@ -33,6 +33,13 @@ const customerSchema = new mongoose.Schema({
         type: String,
         require: true,
         min: 6,
+    },
+    carId: {
+        type: String,
+        require: true,
+        unique: true,
+        min: 5,
     }
+
 })
 module.exports = mongoose.model("Customers", customerSchema)

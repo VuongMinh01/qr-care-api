@@ -11,11 +11,7 @@ import customerRoutes from './routes/v1/customerRoute';
 import couponRoutes from './routes/v1/couponRoute';
 import carRoutes from './routes/v1/carRoute';
 
-import ServiceModel from './models/serviceModel';
-import EmployeeModel from './models/employeeModel';
-import CustomerModel from './models/customerModel.js';
-import CouponModel from './models/couponModel.js';
-import CarModel from './models/carModel.js';
+
 const app = express();
 
 const hostname = 'localhost'

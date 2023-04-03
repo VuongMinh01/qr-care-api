@@ -1,7 +1,7 @@
 import CarModel from "../models/carModel"
 module.exports.addCar = async (req, res, next) => {
     try {
-        const { carId, carName, carType, carCompany } = req.body;
+        const { carId, carName, carType, carCompany, carPlate, customerId } = req.body;
         const carIdCheck = await CarModel.findOne({ carId })
         if (carIdCheck) {
             return res.json({ msg: "Car Id already existed" })
@@ -10,11 +10,18 @@ module.exports.addCar = async (req, res, next) => {
         if (carNameCheck) {
             return res.json({ msg: "Car name already existed" })
         }
+        const carPlateCheck = await CarModel.findOne({ carPlate })
+        if (carPlateCheck) {
+            return res.json({ msg: "Car plate already existed" })
+
+        }
         const car = await CarModel.create({
             carId,
             carName,
             carType,
             carCompany,
+            carPlate,
+            customerId,
         });
         return res.json({ status: true, car })
     } catch (error) {
@@ -34,11 +41,12 @@ module.exports.deleteCar = async (req, res, next) => {
 module.exports.updateCar = async (req, res, next) => {
     try {
         console.log(req.params.carId);
-        const { carName, carType, carCompany } = req.body;
+        const { carName, carType, carCompany, customerId } = req.body;
         const newCar = await CarModel.findOneAndUpdate(req.params.carId, {
             carName: carName,
             carCompany: carCompany,
-            carType: carType
+            carType: carType,
+            customerId: customerId,
         });
         return res.json({ status: true, data: newCar })
     } catch (error) {

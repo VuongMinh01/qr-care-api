@@ -1,8 +1,12 @@
 import CustomerModel from "../models/customerModel";
 import bcrypt from 'bcrypt';
+const defaultResponse = {
+    error: null,
+    result: {}
+}
 module.exports.addCustomer = async (req, res, next) => {
     try {
-        const { customerId, customerName, phone, email, password, address } = req.body;
+        const { customerId, customerName, phone, email, address } = req.body;
         const customerIdCheck = await CustomerModel.findOne({ customerId });
         const customerPhoneCheck = await CustomerModel.findOne({ phone });
         const customerEmailCheck = await CustomerModel.findOne({ email });
@@ -18,7 +22,7 @@ module.exports.addCustomer = async (req, res, next) => {
             customerName,
             phone,
             email,
-            password,
+            address,
         });
         return res.json({ status: true, customer })
     } catch (error) {
@@ -31,5 +35,17 @@ module.exports.getAllCustomer = async (req, res) => {
         res.send({ status: true, data: allCustomer })
     } catch (error) {
         console.log('có lỗi trong việc lấy dữ liệu')
+    }
+}
+module.exports.getCustomer = async (req, res, next) => {
+    try {
+
+        console.log(req.params.customerId);
+        const customer = await CustomerModel.findOne({ customerId: req.params.customerId })
+        console.log(customer);
+        defaultResponse.results = customer
+        return res.json(defaultResponse)
+    } catch (error) {
+        next(error)
     }
 }
