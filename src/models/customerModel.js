@@ -34,9 +34,8 @@ const customerSchema = new mongoose.Schema({
         require: true,
         min: 6,
     },
-    carId: {
+    carPlate: {
         type: String,
-        require: true,
         unique: true,
         min: 5,
     }

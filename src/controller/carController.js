@@ -1,4 +1,5 @@
 import CarModel from "../models/carModel"
+import CustomerModel from "../models/customerModel"
 module.exports.addCar = async (req, res, next) => {
     try {
         const { carId, carName, carType, carCompany, carPlate, customerId } = req.body;
@@ -58,6 +59,15 @@ module.exports.getAllCar = async (req, res) => {
     try {
         const allCar = await CarModel.find();
         res.send({ status: true, data: allCar })
+    } catch (error) {
+        console.log('có lỗi trong việc lấy dữ liệu')
+    }
+}
+module.exports.getInfoCarAndCustomer = async (req, res) => {
+    try {
+        const allCar = await CarModel.find();
+        const allCustomer = await CustomerModel.find();
+        res.send({ status: true, data: allCar, data1: allCustomer })
     } catch (error) {
         console.log('có lỗi trong việc lấy dữ liệu')
     }
