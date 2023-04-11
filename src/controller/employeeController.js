@@ -28,7 +28,6 @@ module.exports.addEmployee = async (req, res, next) => {
 }
 module.exports.getEmployee = async (req, res, next) => {
     try {
-
         console.log(req.params.employeeId);
         const employee = await EmployeeModel.findOne({ employeeId: req.params.employeeId })
         console.log(employee);

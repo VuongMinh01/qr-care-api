@@ -44,16 +44,42 @@ module.exports.getAllCustomer = async (req, res) => {
         console.log('có lỗi trong việc lấy dữ liệu')
     }
 }
-module.exports.getCustomer = async (req, res, next) => {
+module.exports.getCustomerById = async (req, res, next) => {
     try {
 
         console.log(req.params.customerId);
+
         const customer = await CustomerModel.findOne({ customerId: req.params.customerId })
         const car = await CarModel.findOne({ customerId: req.params.customerId })
 
         console.log(customer);
         defaultResponse.resultCustomer = customer
         defaultResponse.resultCar = car
+        return res.json(defaultResponse)
+    } catch (error) {
+        next(error)
+    }
+}
+module.exports.getCustomer = async (req, res, next) => {
+    try {
+
+        console.log(req.params.customerId);
+
+        // const customer = await CustomerModel.findOne({ customerId: req.params.customerId })
+        // const car = await CarModel.findOne({ customerId: req.params.customerId })
+        const customers = await CustomerModel.findOne({
+            // customerName: req.params.customerName
+            customerId: req.params.customerId
+        })
+        const cars = await CustomerModel.findOne({
+            // customerName: req.params.customerName
+            customerId: req.params.customerId
+        })
+
+
+        console.log(customers);
+        defaultResponse.resultCustomer = customers
+        defaultResponse.resultCar = cars
         return res.json(defaultResponse)
     } catch (error) {
         next(error)
